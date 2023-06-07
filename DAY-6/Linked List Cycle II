@@ -1,0 +1,26 @@
+
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        
+        ListNode meet = hasCycle(head);
+        ListNode start = head;
+        if(meet==null) return null;
+        while(start!=meet){
+            start = start.next;
+            meet = meet.next;
+        }
+        return start;
+    }
+    
+    public ListNode hasCycle(ListNode head) {                         //TO FIND THE MEET POINT
+        ListNode slow =head;
+        ListNode fast =head;
+        
+        while(fast!=null&&fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow==fast) return slow;
+        }
+        return null;
+    }
+}
